@@ -1,7 +1,10 @@
 package com.sbnri.pawankumarsbnri.viewmodel
 
+import android.preference.PreferenceManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sbnri.pawankumarsbnri.network.ApiClient
+import com.sbnri.pawankumarsbnri.network.ApiList
 import io.reactivex.disposables.Disposable
 import retrofit2.HttpException
 import java.io.EOFException
@@ -10,7 +13,7 @@ import java.net.UnknownHostException
 import java.net.UnknownServiceException
 
 abstract class BaseViewModel : ViewModel() {
-   // var postApi : ApiList = ApiClient.getApis(PreferenceManager.token!!)
+   var postApi : ApiList = ApiClient.getApis()
     lateinit var subsription : Disposable
 
     val loadingBar : MutableLiveData<Boolean> = MutableLiveData()
@@ -23,7 +26,7 @@ abstract class BaseViewModel : ViewModel() {
         loadingBar.value = false
     }
 
-    protected fun onApiCallError(cause: Throwable?) : String{
+     fun onApiCallError(cause: Throwable?) : String{
         if(cause!=null) {
             if (cause is HttpException) {
                 return when (cause.code()) {

@@ -3,15 +3,15 @@ package com.sbnri.pawankumarsbnri.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sbnri.pawankumarsbnri.BR
 import com.sbnri.pawankumarsbnri.R
 import com.sbnri.pawankumarsbnri.databinding.ItemDataListBinding
 import com.sbnri.pawankumarsbnri.model.DataResponse
 
-class DataAdapter : RecyclerView.Adapter<DataAdapter.DataViewHolder>(){
+class DataAdapter : ListAdapter<DataResponse, DataAdapter.DataViewHolder>(REPO_COMPARATOR) {
 
-    private  var dataList: MutableList<DataResponse> = ArrayList<DataResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
         val binding = DataBindingUtil.inflate<ItemDataListBinding>(
@@ -20,27 +20,29 @@ class DataAdapter : RecyclerView.Adapter<DataAdapter.DataViewHolder>(){
         return DataViewHolder(binding)
     }
 
-    override fun getItemCount()= dataList.size
+
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        val dataList = dataList[position]
-        holder.bind(dataList)
+        holder.bind(getItem(position))
     }
 
-    fun clear(){
-        dataList.clear()
-        notifyDataSetChanged()
-    }
 
-    internal fun setData(_dataItem: String?) {
-        //this.dataList = _dataItem
-        //notifyDataSetChanged()
-    }
+
 
     inner class DataViewHolder(var itemRowBinding : ItemDataListBinding): RecyclerView.ViewHolder(itemRowBinding.root){
         fun bind(dataList: DataResponse){
-            itemRowBinding.setVariable(BR.model,dataList)
-            itemRowBinding.executePendingBindings()
+            itemRowBinding.itemdata = dataList
+        }
+    }
+
+
+    companion object {
+        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<DataResponse>() {
+            override fun areItemsTheSame(oldItem: DataResponse, newItem: DataResponse): Boolean =
+                oldItem.name == newItem.name
+
+            override fun areContentsTheSame(oldItem: DataResponse, newItem: DataResponse): Boolean =
+                oldItem == newItem
         }
     }
 }

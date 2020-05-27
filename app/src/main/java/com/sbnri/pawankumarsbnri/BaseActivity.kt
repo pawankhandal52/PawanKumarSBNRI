@@ -1,7 +1,6 @@
 package com.sbnri.pawankumarsbnri
 
 import android.os.Bundle
-import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,7 +9,7 @@ import androidx.databinding.ViewDataBinding
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     open lateinit var mBinding : T
-    lateinit var progressBar: ProgressBar
+    lateinit var progressBar: ProgressDialog
 
     @LayoutRes
     abstract fun layoutRes() : Int
@@ -18,7 +17,8 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this,layoutRes())
-        progressBar = ProgressBar(this,null, R.attr.progressBarStyle)
+        progressBar = ProgressDialog(this)
+
     }
 
      override fun onBackPressed() {

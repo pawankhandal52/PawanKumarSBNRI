@@ -1,15 +1,16 @@
 package com.sbnri.pawankumarsbnri.model
 
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
 
 data class Permissions(
 
 	@field:SerializedName("pull")
-	val pull: Boolean? = null,
+	var pull: Boolean? = null,
 
 	@field:SerializedName("admin")
-	val admin: Boolean? = null,
+	var admin: Boolean? = null,
 
 	@field:SerializedName("push")
-	val push: Boolean? = null
+	var push: Boolean? = null
 )

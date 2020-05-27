@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Pawan Kumar SBNRI</string>
+    <string name="language">Language: %s</string>
+    <string name="open_issues">Open Issues</string>
+    <string name="licence_name">Licence Name</string>
+    <string name="permission">Permission</string>
+    <string name="loading">Loading....</string>
+    <string name="no_data_found">No Data Found</string>
+
 </resources>

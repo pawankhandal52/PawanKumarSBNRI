@@ -1,21 +1,22 @@
 package com.sbnri.pawankumarsbnri.model
 
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
 
 data class License(
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	var name: String? = null,
 
 	@field:SerializedName("spdx_id")
-	val spdxId: String? = null,
+	var spdxId: String? = null,
 
 	@field:SerializedName("key")
-	val key: String? = null,
+	var key: String? = null,
 
 	@field:SerializedName("url")
-	val url: String? = null,
+	var url: String? = null,
 
 	@field:SerializedName("node_id")
-	val nodeId: String? = null
+	var nodeId: String? = null
 )
