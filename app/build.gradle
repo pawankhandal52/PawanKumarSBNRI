@@ -30,8 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
-    packagingOptions {
-        exclude("META-INF/jersey-module-version")
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
