@@ -1,7 +1,6 @@
 package com.sbnri.pawankumarsbnri.model
 
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmObject
 
 data class License(
 
